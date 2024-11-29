@@ -1,29 +1,3 @@
-
-%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Author: Mauricio Matamoros
-% Updated: Oct 31, 2022
-% Contact: mauricio@robocupathome.org
-%
-% This is the LaTeX source for the TDPTemplate using
-% the LaTeX document class 'llncs.cls' Springer LNAI format
-% used in the RoboCup Symposium submissions.
-% http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0
-%
-% It may be used as a template for your own TDP - copy it
-% to a new file with a new name and use it as the basis
-% for your Team Description Paper
-%
-% NB: the document class 'llncs' has its own and detailed documentation, see
-% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
-%
-% Remark: Last page with specs won't be included in Camera ready TDP's.
-%
-% CHKTEX-FILE 8
-% CHKTEX-FILE 13
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \documentclass[runningheads,a4paper]{llncs}
 
 % XeLaTeX support
@@ -61,11 +35,23 @@
 \usepackage[noabbrev,nameinlink]{cleveref}
 
 \usepackage{lipsum}
+
+
 \input{macros}
+\titlerunning{Tech-bROS 2025 Team Description Paper}
 
 
+\providecommand{\keywords}[1]
+{
+  \small	
+  \textbf{\textit{Keywords---}} #1
+}
 
-
+% Evitar que las secciones actualicen los marcadores de encabezado
+\makeatletter
+\renewcommand{\sectionmark}[1]{}
+\renewcommand{\subsectionmark}[1]{}
+\makeatother
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,16 +59,38 @@
 % Title
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{SkyNet 2023 Team Description Paper}
 
-\author{Main-author \and Co-author \and Team Members}
-\institute{Affiliation name and address, \\
-\texttt{http://devoted-web-site.url}}
+%%novalidate
+\pretitle{\centering\large\textbf{RoboCup@Home 2025 OPL}\par}
+\title{\Large\textbf{Tech-bROS 2025 Team Description Paper}}
+
+\author{
+    Daniel Cuesta Sanz de Madrid\inst{1} \and
+    Javier Jesús Chouza Picallo\inst{1} \and
+    Pablo Escudero Sarabia\inst{1} \and
+    Johnny Leonardo Roca Mendoza\inst{1} \and
+    Fernando González Ramos\inst{1}
+}
+
+\institute{
+    STEAM School, Universidad Europea de Madrid, Spain,\\
+    \email{contact@robohome2025.com}\\
+    \and
+    Robotics Club, Universidad Europea de Madrid, Spain,\\
+    \email{clubroboticsuem@gmail.com}
+}
+
 
 
 \begin{document}
-\maketitle
 
+
+\maketitle
+\markboth{Tech-bROS 2025 Team Description Paper}{Tech-bROS 2025 Team Description Paper}
+\begin{center}
+    \textsuperscript{1}Robotics Club, Universidad Europea de Madrid, Spain\\
+    \texttt{clubroboticsuem@gmail.com}
+\end{center}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Abstract
@@ -90,166 +98,159 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract}
-The present document serves as template for the 2023 Team Description Papers to be submitted for qualification in the 2023 RoboCup@Home international competition to be held in Bordeaux, France.
+Tech-Bros (stylized as Tech-bROS), a multidisciplinary team from the Universidad Europea de Madrid, is proud to present its contributions for the RoboCup@Home 2025 submission. Our research focuses on advancing autonomous robotic systems by integrating state-of-the-art technologies in perception, navigation, and human-robot interaction. The team leverages its diverse expertise, combining the knowledge of researchers and students, to address critical challenges in service robotics.
+\bigbreak
+By participating in RoboCup for the first time, Tech-bROS seeks to showcase these advancements while fostering collaboration and knowledge exchange within the global robotics community. \\
+\keywords{Navigation, Service Robotics, Human-robot interaction}
 
-We strongly recommend abstracts to be limited to 250 words, and follow the three-paragraph rule: introduction and relevance, approach, and contributions. This will help your readers to get a better understanding of what you're about to present.
-
-Your abstract must state your main research line and your scientific achievements of this year, namely which problems have been solved and where the research group focus is directed.
-Summarize your achievements and why the conducted research is relevant in robotics.
-Additionally, you may address your approach to the problem solution and which results do you expect to obtain.
+ 
 \end{abstract}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+% añadir mas robotitos
 \section{Introduction}
-The present document is a template for the Team Description Paper to be submitted for qualification in the 2023 RoboCup@Home international competition to be held in Bordeaux, France.
 
-A Team Description Paper (hereinafter referred as TDP) is an 8-pages long scientific paper, detailing information on the technical and scientific approach of the team's research.
-An updated version of this template can be download from {\small\url{https://github.com/RoboCupAtHome/TDPTemplate}}.
-Contributions to enhancing this template (e.g.~typos, grammatical errors, etc.) are always welcome either as issues or pull requests.
+Tech-bROS, a team of researchers and (mostly) undergrad students from the Universidad Europea de Madrid, is dedicated to advancing robotics through innovative approaches to service robotics and human-robot interaction. Participating in RoboCup @Home 2025\cite{robocupathomeedu} represents a pivotal step for our team in showcasing our work in dynamic and competitive environments. With a focus on the Open Platform League (OPL), we aim to explore the limits of current robotic capabilities while contributing to the global robotics community.
+\bigbreak
+Our research leverages the TurtleBot 4, Turtlebot 3 and Turtlebot 2 as a robust and reliable standard set of platforms to address complex tasks in navigation, perception, and human interaction. By integrating cutting-edge technologies such as real-time localization, adaptive planning and deep learning technologies, we strive to develop solutions that are not only effective but also scalable to real-world applications. Furthermore, our work emphasizes user-centric design principles, ensuring robots can interact naturally and effectively with humans in service environments.
 
-\textbf{Copyright note:} All TDPs sent for qualification are made publicly available in the \href{https://github.com/RoboCupAtHome/AtHomeCommunityWiki/wiki}{RoboCup@Home Wiki} for further reference.
-On submitting, teams implicitly grant permission to RoboCup@Home and the RoboCup Federation to copy, distribute, upload, publish, and use the manuscript to promote the event and the league at convenience.
-
-\section{TDP contents}
-While writing the TDP, focus on your current research, clearly stating all scientific contribution, and why are they important for you and the league. The length of the TDP is limited to 8 pages including references. \textbf{\color{red} Exceeding the number of pages will automatically void your application}.
-
-The Team Description Paper shall use the \textit{Springer LNAI format}\footnotemark~used in the RoboCup Symposium submissions, and has a hard limit of 8 pages without altering margins or spacing (including references but excluding the annex).
-Please notice that changes to the margins, space between paragraphs, and font size are not allowed (such TDP will be rejected). We suggest to leave the hardware and software description for the end of the paper in the annex.\footnotetext{\url{http://www.springer.com/computer/lncs?SGWID=0-164-6-793341-0}}
-
-\textbf{Important Notice:} Attaching to the requested format is important for the camera ready version of the TDPs can be included in the memories of the competition.
-
-\noindent The TDP must contain the following information:
-
-\begin{itemize}[nosep]
-	\item Innovative technology and scientific contribution
-	\item Focus of research/research interests
-	\item Re-usability of the system for other research groups
-	\item Applicability of the robot in the real world
-	\item \textbf{DSPL \& SSPL:} When the robot depicted in the TDP or Team Video is different from the league's standard one, the TDP must clearly state how the addressed approach and described software will be adapted to the standard platform robot.
-\end{itemize}
-
-The language for the whole TDP, including graphics, tables, images, and all additional content must be English. Content in other languages must be translated.
-
-
-\section{Do's and Don'ts}
-This section elaborates on a set of \textit{hits} about what to do (or what to avoid) when writing a TDP.
-Following these guidelines may help your team to obtain qualification, although none is mandatory.
-When writing a TDP, the best guidelines are the ones that help you to present your research in a clear, concise, and effective manner.
-
-\subsection{No more than 8 pages}
-Seriously. Exceeding the number of pages is the easiest way of forfeiting your qualification.
-
-\subsection{Summarize your achievements}
-In order to promote participation in local tournaments, experience is heavily weighted during the qualification process.
-Dedicating one paragraph to summarize the experience and achievements of your team in local tournaments is therefore strongly advised.
-
-\subsection{Save space for Science}
-Describing your team in detail (e.g.~number of undergrads, grads, and PhD students) is of little interest for the league, and uses some valuable space that can be used instead to describe your research.
-It is strongly advised that teams describe instead their approaches and achievements.
-Our reviewers are far more interested in knowing how your robot manages to solve a task and reading about your ground-breaking discoveries, than in the history of the team.
-
-\subsection{Avoid describing your robot}
-Unless your research revolves around hardware design and implementation (e.g.~mechanical schematics, control, low-cost solutions), it is better to omit this section, specially in Standard Platform Leagues (the HW is already known to us).
-Detailed software and hardware descriptions can be provided in the appendix, for which there is no page limit.
-
-\subsection{Avoid explaining ROS}
-With over 90\% usage in RoboCup@Home, it can be assumed that all reviewers are familiar with ROS.
-Therefore, unless your research extends or enhances an specific ROS package, there is no need to explain how it works.
-Moreover, TDPs revolving around the basics of ROS are typically rejected.
-
-\subsection{Keep it simple}
-Although reviewers share a common background in the domain of service robotics, is very unlikely that they are actively involved in your research field.
-Therefore, you can't expect that we are familiar with the State-of-the-Art.
-The organizing committee kindly asks authors to keep this in mind and write in a more descriptive and less analytic way.
-The main goal of a TDP is tell others about your latest practical achievement, how your team managed to solve the problem, what strategy was chosen and why, while at the same time trying to convince your reader that what you are doing is useful or applicable in a daily life scenario.
-
-\subsection{Mind your writing}
-We strongly advise non-native speakers to double check the readability of their TDP's before submission.
-More often than not, a team may not obtain qualification if the reviewers can't understand the ideas of the authors.
-
-Likewise, and as a courtesy to our reviewers, we kindly ask native speakers to write as neutral as possible and refrain from using colloquial expressions and slang.
-Although all reviewers are fluent English readers (even sometimes native speakers), they may not be proficient in a particular idiom such as Australian, British, or American English.
-This situation may lead to ambiguities and misunderstandings which could reduce the submitter's score, reducing the chances of qualifying.
-
-\section{TDP Annex}
-The TDP's Robot Description Annex is an appendix of arbitrary length that must be attached at the end of the TDP and summarize the robot's software and hardware technical specifications.
-
-The purpose of the annex is to provide an overview on how the robot operates.
-This has several purposes.
-First, it allows the league to track changes in hardware and software trends over time.
-Second, it helps experienced teams to find alternatives to their solutions when looking to improve or conducting benchmarking.
-Third, it serves as a quick reference guide for new teams while preparing their robots.
-Finally, it helps the Technical Committee to keep the rulebook's specifications within the reach.
-
-The annex must contain the following information:
-
-\begin{itemize}[nosep]
-	\item Photo(s) of the robot
-	\item \textbf{OPL only:} Brief, compact description of the robot's hardware.
-	\begin{itemize}[nosep]
-		\item Robot's dimensions and weight.
-		\item Traction type (base, e.g.~differential pair, omnidirectional, synchro-drive).
-		\item Manipulators, count and number of DoF.
-		\item Torsos (pan-elevation unit supporting the head), count and number of DoF.
-		\item Heads (pan-tilt unit with a camera and optionally a microphone), count and number of DoF.
-		\item Number and type of LIDAR sensors.
-		\item Number and type of RGB-D sensors.
-		\item Number and type of cameras.
-		\item Number and type of microphones.
-		\item Number and type of other sensors.
-		\item Number and type of other actuators.
-	\end{itemize}
-	\item \textbf{DSPL \& SSPL:} Do \textbf{NOT} include hardware description.
-	\item Brief, compact description of the robot's software (including commercial products, freeware, Open Source, etc.).
-	\begin{itemize}[nosep]
-		\item Audio filtering
-		\item Automated speech recognition
-		\item Manipulation
-		\item Natural Language Processing
-		\item Navigation, localization, and mapping
-		\item Object recognition
-		\item People recognition
-		\item People tracking
-		\item Pose/Gesture recognition
-		\item Sound source localization
-	\end{itemize}
-	\item List of all external computing devices and the software running on them.
-	\item List of all cloud computing resources intended to be used.
-	\item Brief, compact description of all external devices (e.g.~smart home devices, transceivers, helper robots, etc.).
-\end{itemize}
-
-Examples are provided at the end of this document in
-\hyperlink{page.9}{page~9~(DSPL)},
-\hyperlink{page.10}{page~10~(OPL)}, and
-\hyperlink{page.11}{page~11~(SSPL)}.
+This paper outlines our team’s approach to solving the challenges posed by the OPL. We present an overview of the software and system architecture used to enhance all of our robots' functionality, as well as the methodologies employed in our experiments. Additionally, we discuss our key contributions to advancing autonomous robotics, including the development of adaptable interaction frameworks and robust navigation systems. Through this participation, we aim to demonstrate the practical and scientific relevance of our solutions in the context of RoboCup’s mission to advance the field of robotics.
 
 
 \section{Background}
-% We are Buy n Large. We have no competitors so no background is required.
-\lipsum[1-2]
 
-\section{BnL Trash Seeker Algorithm (Main research)}
-\lipsum[4-5]
+Recent studies done at our institution have indicated that user experience (UX) and the physical form of robots are critical factors in determining how users view and interact with robotic systems \cite{corrales2023embodiment}.
 
-\section{BnL All-purpose Speech Recognizer (Main research)}
-\lipsum[9-10]
+Expanding upon this groundwork, our study at Tech-bROS seeks to apply these discoveries to ever-changing service settings, concentrating on immediate adjustability and varied interaction systems. We are inspired by embodiment principles and strive to create a robot that can promote natural and efficient communication through movement, guaranteeing a positive user experience in different situations like household chores and teamwork scenarios. 
+
+Building on this foundation, our research at Tech-bROS aims to extend these findings to dynamic service environments, focusing on real-time adaptability and multi-modal interaction frameworks. Inspired by the principles of embodiment, we aim to develop a robot capable of fostering natural and effective communication, ensuring a positive user experience in various contexts, such as domestic tasks and collaborative settings.
+
+\section{Prior Experience}
+Even though our team is new to the family of Robocup competitions, several members of our team have prior experience in other kinds of competitions, for instance, last year at the \textbf{ASTI Robotics Challenge} our team \textit{`Duck Fighters`} won first place overall at best performance and the 'Best Sumo Robot' award.\cite{ASTIRobotics2024} \
+
+
+
+\section{Refinement in Path planning and localization systems}
+One of the main contributions of our team is taking a shot at the improvement and refinement of navigation systems using the Nav2 stack.
+
+In order to achieve this main goal, we used the widest possible set of robotic systems, in our case the last 3 generations of Turtlebot robots:
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.28\textwidth}
+        \centering
+        \includegraphics[angle=-90,origin=c,width=\textwidth]{images/ourtb4.jpg}
+        \caption{Our Turtlebot 4}
+        \label{fig:turtlebot4_1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.28\textwidth}
+        \centering
+        \includegraphics[angle=-90,origin=c,width=\textwidth]{images/ourtb3.jpg}
+        \caption{Our set of Turtlebot 3 Burger}
+        \label{fig:turtlebot4_2}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.28\textwidth}
+        \centering
+        \includegraphics[angle=-90,origin=c,width=\textwidth]{images/ourtb2.jpg}
+        \caption{Our Turtlebot 2 Kobuki}
+        \label{fig:turtlebot4_3}
+    \end{minipage}
+\end{figure}
+
+Most of our initial research relied on the oldest platform, the \textit{Kobuki}, since it is the most widely documented platform out of the three. The main intention is to standardize the tools that are used within the Nav2 stack setup process and create a subset of tools and scripts that work straight out of the box so that researchers and hobbyists minimize time spent on non-essential configuration adjustments to ensure smooth functionality. We still are currently in the process of porting some of these tools to the latest generation of Turtlebot robots, however, we have already achieved significant progress in bridging the compatibility gap. This involves creating modular configurations that adapt seamlessly across different hardware and software setups, ensuring that the transition between robotic platforms is both intuitive and efficient.\cite{RoboCupUE}
+
+\section{Waymarking in Social Robotics}
+The autonomy of robots has been a primary goal for researchers in recent decades. This research focused on waymarking, the ability for a robot to generate and  update multiple environmental signals that aid navigation for themselves and other robots. The study emphasized on human-robot interaction (HRI), using natural language to ask questions like “Where am I?” or “Where can I go?”, enabling it to gather more detailed environmental information. This data is then used to update or improve navigation signals stored in RFID tags, which can be used by other robots in the future.\cite{corrales2021embodiment}
+
+The system was tested using the social robot Maggie in a real indoor environment. Maggie used RFID tags to navigate and added or updated signals autonomously when data was missing or outdated. The study demonstrated the benefits of HRI in enhancing a robot's understanding of the environment.
 
 \section{Other relevant contributions}
-\lipsum[12]
-\subsection{Dirt Detector Algorithm}
-\lipsum[13]
-\subsection{Green Plant Seeker Algorithm}
-\lipsum[14]
-\subsection{Trash Seeker Algorithm}
-\lipsum[15]
 
-\section{Experiments and results}
-\lipsum[23-24]
+\subsection{Open-Source ROS 2 utilities and package development}
+As part of our commitment to fostering collaboration and innovation within the robotics community, Tech-bROS is currently developing a set of open-source utilities and packages tailored for the ROS 2 ecosystem. These tools are designed to enhance the capabilities of standard platforms such as the TurtleBot family of robots while ensuring accessibility and reusability for other research teams.
 
-\section{Conclusions and future work}
-\lipsum[25]
+\begin{itemize}
+    \item \textbf{Website:} \url{https://robocupue.github.io/techbrosweb.github.io/}
+    \item \textbf{Github:} \url{https://github.com/RoboCupUE}
+    \item \textbf{Demo Videos:} \url{https://www.youtube.com/@roboticsuem}
+\end{itemize}
+
+All packages are publicly available on GitHub under open-source licenses, ensuring transparency and encouraging their use and improvement by the robotics community.
+
+\subsection{Integration of a Social Robot in a Pedagogical and Logopedic Intervention with Children: A Case Study}
+This research explored the integration of the NAO humanoid robot in pedagogical and logopedic interventions for children with specific learning and speech therapy needs. Conducted with five children, the study examined the robot's role as a therapeutic tool in supporting tasks like reading comprehension, phonetics, and articulation. The robot’s adaptive architecture evolved during the study to address the unique and dynamic needs of each child, enhancing engagement and fostering motivation.
+
+The study concluded that robots of the same caliber could effectively supplement therapeutic interventions. However, challenges such as reliance on a programmer and response delays highlighted areas for improvement. Future work will focus on enhancing robot autonomy, refining speech recognition, and equipping therapists to manage sessions independently, making social robots more viable for broader therapeutic applications.\cite{corrales2020embodiment}
+
+\section{Other experiments and results}
+
+\subsection{Mapping, Localization and Navigation}
+As part of our efforts to refine the robot's navigation capabilities, we conducted a comprehensive mapping of the second floor of our faculty building. This process involved generating an accurate 2D map using LiDAR and camera sensors and the \textit{Slam\_Toolbox} ROS2 package, ensuring that all structural and environmental features were captured effectively. During the mapping process, several adjustments were made to improve the fidelity of the generated map, such as correcting alignment errors and fine-tuning sensor parameters.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/mapping.png}
+        \caption{\textit{Kobuki} mapping in-progress}
+        \label{fig:mapping}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/uem_floor1_clean.png}
+        \caption{Generated map file}
+        \label{fig:uem_floor1_clean}
+    \end{minipage}
+\end{figure}
+
+Once the map was finalized, we used then AMCL (\textit{Adaptative Monte-Carlo Localization}) localization algorithms to ensure that the robot could determine its position with high precision while navigating through the environment. Using the Nav2 stack, we successfully enabled the robot to perform pathfinding tasks through various predefined locations in the map.
+
+To optimize its movement, we established a series of waypoints that defined a fixed route for the robot. This setup allowed the robot to follow a structured path while dynamically avoiding obstacles such as people and furniture. Using real-time sensor data, the robot was able to adapt to changes in its environment, ensuring smooth navigation and efficient path execution. This demonstrated the reliability of our system in handling dynamic scenarios, further validating the robustness of our approach.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.30\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/uem_floor1_waypoint.png}
+        \caption{Waypoint locations}
+        \label{fig:waypoints}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/a_to_b.png}
+        \caption{Following specified route}
+        \label{fig:a_to_b}
+    \end{minipage}
+\end{figure}
+
+These waypoints can then be adjusted in real-time, and along with other technologies such as the one described in the next point, can be used for object localization and interacting with moving objects.
+
+
+
+\subsection{Semantic 3D Mapping from Deep Image Segmentation}
+One of our members participated in a study detailing the 3D mapping of Deep Image segmented views \cite{Martín2021Semantic}. This paper details the deployment of a system that allows for a standard LIDAR point cloud to be semantically enriched using deep learning-based image segmentation. The approach solves the boundary pixel problem, a common issue where inaccuracies occur in aligning segmented pixels from 2D images to their corresponding 3D points in the point cloud.
+
+The proposed algorithm uses a novel mapping strategy that accurately projects segmented pixels onto the point cloud, ensuring better alignment and reliability. This was validated using real-world data from a RGBD camera, where the system demonstrated significant improvements over baseline methods in terms of accuracy and computational efficiency.
+
+Furthermore, the study applied this algorithm to create a semantic 3D map of an indoor environment for a mobile robot, enabling better navigation and environmental understanding. Such advancements showcase the potential of integrating deep learning with robotic mapping systems to enhance autonomous navigation in complex environments.
+
+\section{Conclusions and Future Work}
+
+Tech-bROS has made significant strides in advancing autonomous robotics within the realm of ROS2, focusing on navigation, perception, and human-robot interaction. Our work with the TurtleBot platforms, the Nav2 Stack, SLAM and many other tools has demonstrated the importance of creating scalable, plug-and-play solutions for diverse applications. Additionally, our contributions to social robotics and therapeutic interventions highlight the potential of robots in dynamic and human-centered environments.
+
+Looking forward, our future efforts will focus on:
+\begin{itemize}
+    \item Enhancing real-time decision-making and adaptability in dynamic scenarios.
+    \item Refining human-robot interaction, particularly in natural language understanding through the use of facial expression detection.
+    \item Expanding our open-source ROS tools for broader platform compatibility.
+    \item Leveraging RoboCup participation to validate and showcase our advancements.
+\end{itemize}
+
+By addressing these areas, Tech-bROS aims to continue pushing the boundaries of service robotics while fostering collaboration within the global robotics community.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -260,8 +261,7 @@ Examples are provided at the end of this document in
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
 
-% Comment or delete the following line
-{\vfill\begin{center}\huge\color{red}TDP must \textbf{NOT} exceed 8 pages\end{center}}
+
 
 \clearpage{}
 
@@ -272,11 +272,9 @@ Examples are provided at the end of this document in
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \robospecs{}
-\input{RobotDescriptionDSPL}
-\newpage
+
 \input{RobotDescriptionOPL}
-\newpage
-\input{RobotDescriptionSSPL}
+
 
 \nocite{*}
 

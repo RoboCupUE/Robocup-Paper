@@ -1,69 +1,84 @@
-%CHKTEX-FILE 46
-
-\section*{Robot WALL-E Hardware Description [OPL Template]}%
-\label{sec:annex-OPL}
+\section*{Annex}
+\subsection*{TurtleBot 4 Specifications[OPL]}%
+\label{sec:annex-SSPL}
 % In this section briefly describe the software and hardware of the robot
 
 \setlength\intextsep{0pt}
 \begin{wrapfigure}[10]{r}{0.3\textwidth}
 	\centering
-	\includegraphics[width=0.4\textwidth]{images/wall-e.jpg}
-	\caption{Robot WALL-E}%
-	\label{fig:wall-e}
+	\includegraphics[width=0.4\textwidth]{images/robot.jpg}
+	\caption{TurtleBot 4}%
+	\label{fig:turtlebot4}
 \end{wrapfigure}
 
-Robot WALL-E has the patented \textit{\BnL{} Optimized Design} for garbage recollection. Specifications are as follows:
+The TurtleBot 4, developed by \textit{Clearpath Robotics}, is a modular and open platform robot designed for research and education. In this section, we detail the hardware and software configurations employed by Tech-bROS to enhance the TB4's functionality for dynamic service tasks and human-robot interaction.
 
+\subsection*{Hardware Description}
 \begin{itemize}
-	\item Base: \BnL{} all-terrain base (differential pair), 2.5m/s max speed.
-	\item Torso: \BnL{} compressor with solar charger.
-	\item Left and right arms: Mounted on torso. \BnL{} 7DOF, anthropomorphic. Maximum load: 20kg.
-	\item Neck: \BnL{} telescopic neck with pan and tilt.
-	\item Head: 3DOF \BnL{} Expressive Eyes
-	\item Robot dimensions: height: 1.2m (max), width: 0.7m depth 0.8m
-	\item Robot weight: 50kg.
+    \item \textbf{Dimensions and Weight:} 
+        \begin{itemize}
+            \item Diameter: 320 mm.
+            \item Height: 430 mm.
+            \item Weight: 10.5 kg.
+        \end{itemize}
+    \item \textbf{Base:} Differential drive system with two active wheels and a passive caster for stability.
+    \item \textbf{Sensors:}
+        \begin{itemize}
+            \item LIDAR: 360° scanning with RPLIDAR A1.
+            \item Depth Camera: OAKD-Pro for RGB-D perception and spatial mapping.
+            \item IMU: Built-in Inertial Measurement Unit for motion tracking.
+            \item Bumper and Cliff Sensors: Obstacle detection and edge safety.
+        \end{itemize}
+    \item \textbf{Actuators:} 
+        \begin{itemize}
+            \item Two DC motors with integrated encoders for precise movement.
+        \end{itemize}
+    \item \textbf{Power:} Lithium-Ion battery providing 2–3 hours of continuous operation.
+    \item \textbf{Processor:} Raspberry Pi 4B with 4 GB RAM.
 \end{itemize}
 
-\noindent\textit{Also our robot incorporates the following devices:}
-
-\begin{itemize}
-	\item \BnL{} Battery charge indicator
-	\item \BnL{} Auto-focus all-purpose cameras
-	\item \BnL{} 7DOF heavy duty fingers
-	\item \BnL{} Cockroach
-\end{itemize}
-
-\section*{Robot's Software Description}
-% Please describe in this section the software you are using to control your robot. Consider the following example:
-
+\subsection*{Software Description}
 \textit{For our robot we are using the following software:}
-
 \begin{itemize}
-	\item Platform: \BnL{} Operating System
-	\item Navigation: \BnL{} Navigator
-	\item Face recognition: None. Not designed for human interaction.
-	\item Speech recognition: \BnL{} All-purpose recognizer~\cite{bnl1}.
-	\item Speech generation: None. Not designed for human interaction.
-	\item Object recognition: \BnL{} Trash Seeker Algorithm (See previous sections).
-	\item Arms control and two-hand coordination: \BnL{} automatic controller~\cite{bnl2}.
+    \item \textbf{Operating System:} ROS 2 Humble Hawksbill on Ubuntu 22.04 LTS.
+    \item \textbf{Localization and Navigation:}
+        \begin{itemize}
+            \item Adaptive Monte Carlo Localization (AMCL).
+            \item Nav2 Stack for SLAM and navigation.
+        \end{itemize}
+    \item \textbf{Perception:}
+        \begin{itemize}
+            \item Object detection using YOLOv5, \textit{Darknet ROS} and \textit{Darknet ROS 3D}.
+            \item SLAM with Cartographer for simultaneous localization and mapping.
+        \end{itemize}
+    \item \textbf{Human-Robot Interaction:}
+        \begin{itemize}
+            \item Object and facial expression recognition through depth camera integration.
+        \end{itemize}
+    \item \textbf{Simulation and Testing:} 
+        \begin{itemize}
+            \item Custom Gazebo worlds for benchmarking and validation.
+            \item Real-world pre-mapped environments within our institution.
+        \end{itemize}
+    \item \textbf{Data Logging:}
+        \begin{itemize}
+            \item ROSbag for recording experiment data.
+        \end{itemize}
 \end{itemize}
 
-\section*{External Devices}
-% Please describe in this section the external devices used by your robot. Consider the following example:
-
-\textit{WALL-E robot relies on the following external hardware:}
-
+\subsection*{System Customizations}
+\noindent\textit{Also our robot incorporates the following devices:}
 \begin{itemize}
-	\item \BnL{} Garbage Compactor
-	\item \BnL{} EVA unit
-	\item \BnL{} Data Cluster
-	\item $3 \times$ \BnL{} Ultra-Power laptops.
-\end{itemize}
-
-\section*{Cloud Services}
-% Please describe in this section the Cloud Services and online software used by your robot. Consider the following example:
-
-\textit{WALL-E connects the following cloud services:}
-\begin{itemize}
-	\item Localization and mapping: \BnL{} Geolocalization system~\cite{bnl3}.
+    \item \textbf{Additional Hardware:}
+        \begin{itemize}
+            \item NVIDIA Jetson X2 for AI inference and deep learning tasks.
+            \item External WiFi module for enhanced cloud connectivity.
+            \item Robotic arm mounted on top shelf as a means of interaction with the surrounding environment.
+        \end{itemize}
+    \item \textbf{Software Enhancements:}
+        \begin{itemize}
+            \item Custom plugins for Nav2 to handle dynamic obstacles.
+            \item Extended SLAM capabilities with multi-sensor fusion.
+            \item Custom behavior trees to improve the robustness of the robot autonomy.
+        \end{itemize}
 \end{itemize}
